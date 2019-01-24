@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class FindANewHouseScript : MonoBehaviour
 {
     private SnowBallScript snowBallScript;
+    private InstructionScript instructionScript;
     public GameObject lightpost;
     public Vector3 offSet;
 
@@ -18,6 +19,7 @@ public class FindANewHouseScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instructionScript = GameObject.FindGameObjectWithTag("InstructionScript").GetComponent<InstructionScript>();
         fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<FaderScript>();
         snowBallScript = GameObject.FindGameObjectWithTag("Snowball").GetComponent<SnowBallScript>();
     }
@@ -44,7 +46,11 @@ public class FindANewHouseScript : MonoBehaviour
         fader.FadeIn(newHouseText);
         yield return new WaitForSeconds(4);
         fader.FadeIn(itsNotText);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
+        instructionScript.UpdateInstructionText("Hold W to feel like home");
+        yield return new WaitForSeconds(1);
         snowBallScript.movementSpeed = oldMoveSpeed;
+        yield return new WaitForSeconds(3);
+        instructionScript.FadeOut();
     }
 }

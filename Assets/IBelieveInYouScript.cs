@@ -16,6 +16,7 @@ public class IBelieveInYouScript : MonoBehaviour
 
     public Text mightNotMeanMuchText;
     public Text iBelieveInYOuText;
+    public Text followYourDreamsText;
 
     public bool hasBeenTriggered;
     public bool isHoldingOn = true;
@@ -64,18 +65,22 @@ public class IBelieveInYouScript : MonoBehaviour
         fader.FadeIn(iBelieveInYOuText);
         instructionScript.FadeOut();
         yield return new WaitForSeconds(2);
+        fader.FadeIn(followYourDreamsText);
+        yield return new WaitForSeconds(2);
         snowBallScript.movementSpeed = oldMoveSpeed;
-        snowBallScript.maxScale = snowBallScript.maxScale * 5;
+        snowBallScript.maxScale = snowBallScript.maxScale * 15;
         fader.FadeOut(mightNotMeanMuchText);
         yield return new WaitForSeconds(1);
         fader.FadeOut(iBelieveInYOuText);
+        yield return new WaitForSeconds(1);
+        fader.FadeOut(followYourDreamsText);
         
         yield return new WaitForSeconds(4);
         instructionScript.UpdateInstructionText("Hold W to keep holding on");
         
         camera.RotateCamera(200);
         hasBeenTriggered = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         hasBeenPromptedToHoldOn = true;
     }
 }

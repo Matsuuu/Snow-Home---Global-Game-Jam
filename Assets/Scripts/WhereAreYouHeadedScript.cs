@@ -47,6 +47,7 @@ public class WhereAreYouHeadedScript : MonoBehaviour
         float oldMoveSpeed = snowBallScript.movementSpeed;
         snowBallScript.SlowDown();
         fader.FadeIn(whereDoYouThinkYoureHeadedText);
+        instructionScript.FadeOut();
         yield return new WaitForSeconds(3);
         fader.FadeOut(whereDoYouThinkYoureHeadedText);
         yield return new WaitForSeconds(1.5f);
