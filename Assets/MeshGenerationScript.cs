@@ -100,6 +100,14 @@ public class MeshGenerationScript : MonoBehaviour
     private void OnCollisionStay(Collision other)
     {
         ContactPoint contactPoint = other.contacts[0];
+        for (int i = 0; i < other.contacts.Length; i++)
+        {
+            if (other.contacts[i].point != lastContactPoint)
+            {
+                contactPoint = other.contacts[i];
+                break;
+            }
+        }
         if (contactPoint.point != lastContactPoint)
         {
             Vector3 contPoint = contactPoint.point;
@@ -114,18 +122,29 @@ public class MeshGenerationScript : MonoBehaviour
             {
                 if (vertices[i] == first)
                 {
+                    Debug.Log(i);
+                    Debug.Log(vertices[i].y);
+                    if (vertices[i].y == snowSinkHeight)
+                    {
+                        break;
+                    }
                     int targetVertice = i - snowWidth;
                     if (targetVertice > 0)
                     {
                         vertices[targetVertice] = new Vector3(vertices[targetVertice].x, snowSinkHeight, vertices[targetVertice].z);
+                        vertices[targetVertice - 1] = new Vector3(vertices[targetVertice - 1].x, snowSinkHeight, vertices[targetVertice - 1].z);
+                        vertices[targetVertice + 1] = new Vector3(vertices[targetVertice + 1].x, snowSinkHeight, vertices[targetVertice + 1].z);
+                        vertices[targetVertice + snowWidth] = new Vector3(vertices[targetVertice + snowWidth].x, snowSinkHeight, vertices[targetVertice + snowWidth].z);
+                        vertices[targetVertice - snowWidth] = new Vector3(vertices[targetVertice - snowWidth].x, snowSinkHeight, vertices[targetVertice - snowWidth].z);
+                        snowBallScript.IncreaseBallSize();
                     }
+
+                    break;
                 }
             }
 
-
             mesh.vertices = vertices;
             mesh.RecalculateNormals();
-            snowBallScript.IncreaseBallSize();
             lastContactPoint = contactPoint.point;
         }
     }

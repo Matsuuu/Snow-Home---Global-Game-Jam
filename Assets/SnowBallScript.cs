@@ -23,10 +23,19 @@ public class SnowBallScript : MonoBehaviour
 
     public void IncreaseBallSize()
     {
-        Vector3 oldScale = transform.localScale;
+        StartCoroutine(LerpBallSize());
+    }
+
+    private IEnumerator LerpBallSize()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Vector3 oldScale = transform.localScale;
         transform.localScale = new Vector3(oldScale.x + ballSizeIncreaseIncrement,
             oldScale.y + ballSizeIncreaseIncrement,
             oldScale.z + ballSizeIncreaseIncrement);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     void MoveBall()
