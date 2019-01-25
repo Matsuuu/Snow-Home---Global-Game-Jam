@@ -7,8 +7,9 @@ public class SnowBallScript : MonoBehaviour
 
     private Rigidbody rb;
     public float ballSizeIncreaseIncrement;
+    public int maxScale;
 
-    public int movementSpeed;
+    public float movementSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,10 @@ public class SnowBallScript : MonoBehaviour
 
     public void IncreaseBallSize()
     {
-        StartCoroutine(LerpBallSize());
+        if (transform.localScale.x < maxScale)
+        {
+            StartCoroutine(LerpBallSize());
+        }
     }
 
     private IEnumerator LerpBallSize()

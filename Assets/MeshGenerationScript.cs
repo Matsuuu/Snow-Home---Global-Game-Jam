@@ -122,8 +122,6 @@ public class MeshGenerationScript : MonoBehaviour
             {
                 if (vertices[i] == first)
                 {
-                    Debug.Log(i);
-                    Debug.Log(vertices[i].y);
                     if (vertices[i].y == snowSinkHeight)
                     {
                         break;
