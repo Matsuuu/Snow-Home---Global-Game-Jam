@@ -7,17 +7,23 @@ using UnityEngine.UI;
 public class OutgrowTextLauncherScript : MonoBehaviour
 {
     private SnowBallScript snowBallScript;
+    private GameObject invisibleWall;
     public GameObject house;
     public Vector3 offSet;
 
     public Text tooBigText;
 
     public Text everybodyDoesText;
+    public Text soYouMoveOnText;
 
     private bool textFadeInHasBeenLaunched;
+
+    public FaderScript fader;
     // Start is called before the first frame update
     void Start()
     {
+        invisibleWall = GameObject.FindGameObjectWithTag("InvisibleWall");
+        fader = GameObject.FindGameObjectWithTag("Fader").GetComponent<FaderScript>();
         snowBallScript = GameObject.FindGameObjectWithTag("Snowball").GetComponent<SnowBallScript>();
     }
 
@@ -29,7 +35,7 @@ public class OutgrowTextLauncherScript : MonoBehaviour
             transform.position = snowBallScript.transform.position + offSet;
         }
 
-        if (snowBallScript.transform.localScale.x > snowBallScript.maxScale && !textFadeInHasBeenLaunched && snowBallScript.transform.position.z > house.transform.position.z)
+        if (snowBallScript.transform.localScale.x > snowBallScript.maxScale / 2 && !textFadeInHasBeenLaunched && snowBallScript.transform.position.z > house.transform.position.z)
         {
             textFadeInHasBeenLaunched = true;
             StartCoroutine(LaunchOutgrowText());
@@ -39,39 +45,19 @@ public class OutgrowTextLauncherScript : MonoBehaviour
     IEnumerator LaunchOutgrowText()
     {
         float oldSpeed = snowBallScript.movementSpeed;
-        snowBallScript.movementSpeed = 0.1f;
-        StartCoroutine(FadeIn(tooBigText));
+        snowBallScript.SlowDown();
+        fader.FadeIn(tooBigText);
         yield return new WaitForSeconds(5);
-        StartCoroutine(FadeIn(everybodyDoesText));
+        fader.FadeIn(everybodyDoesText);
         yield return new WaitForSeconds(2);
-        StartCoroutine(FadeOut(tooBigText));
-        StartCoroutine(FadeOut(everybodyDoesText));
+        fader.FadeOut(tooBigText);
+        fader.FadeOut(everybodyDoesText);
+        fader.FadeIn(soYouMoveOnText);
         snowBallScript.movementSpeed = oldSpeed;
         yield return new WaitForSeconds(5);
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        invisibleWall.transform.position = new Vector3(0, 0, house.transform.position.z + 15);
+        GetComponent<OutgrowTextLauncherScript>().enabled = false;
     }
 
-    IEnumerator FadeIn(Text target)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            Color targetColor = target.color;
-            targetColor.a += 0.1f;
-            Debug.Log("fadein");
-            target.color = targetColor;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
-
-    IEnumerator FadeOut(Text target)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            Color targetColor = target.color;
-            targetColor.a -= 0.1f;
-            Debug.Log(targetColor.a);
-            target.color = targetColor;
-            yield return new WaitForSeconds(0.1f);
-        }
-    }
 }

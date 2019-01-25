@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Snowball
+  - Fader
+  - InvisibleWall
   layers:
   - Default
   - TransparentFX
