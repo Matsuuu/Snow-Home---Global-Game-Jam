@@ -7,10 +7,13 @@ using Random = UnityEngine.Random;
 
 public class MeshGenerationScript : MonoBehaviour
 {
+    public GameObject snowBall;
+    private SnowBallScript snowBallScript;
     public int snowWidth;
     public int snowDepth;
     public float minSnowHeight;
     public float maxSnowHeight;
+    public float snowSinkHeight;
     
     private Mesh mesh;
     private MeshCollider meshCollider;
@@ -26,6 +29,7 @@ public class MeshGenerationScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        snowBallScript = snowBall.GetComponent<SnowBallScript>();
         minMeshX = transform.parent.transform.position.x;
         minMeshZ = transform.parent.transform.position.z;
         mesh = new Mesh();
@@ -78,11 +82,6 @@ public class MeshGenerationScript : MonoBehaviour
 
             vert++;
         }
-
-        for (int j = 0; j < vertices.Length; j++)
-        {
-            Debug.Log(vertices[j]);
-        }
     }
 
     void CreateSnow()
@@ -118,7 +117,7 @@ public class MeshGenerationScript : MonoBehaviour
                     int targetVertice = i - snowWidth;
                     if (targetVertice > 0)
                     {
-                        vertices[targetVertice] = new Vector3(vertices[targetVertice].x, -0.5f, vertices[targetVertice].z);
+                        vertices[targetVertice] = new Vector3(vertices[targetVertice].x, snowSinkHeight, vertices[targetVertice].z);
                     }
                 }
             }
@@ -126,6 +125,7 @@ public class MeshGenerationScript : MonoBehaviour
 
             mesh.vertices = vertices;
             mesh.RecalculateNormals();
+            snowBallScript.IncreaseBallSize();
             lastContactPoint = contactPoint.point;
         }
     }
