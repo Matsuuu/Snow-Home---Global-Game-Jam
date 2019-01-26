@@ -9,6 +9,7 @@
         <e p="FaderScript.cs" t="Include" />
         <e p="FindANewHouseScript.cs" t="Include" />
         <e p="MeshGenerationScript.cs" t="Include" />
+        <e p="MeshGeneratorGeneratorScript.cs" t="Include" />
         <e p="OutgrowTextLauncherScript.cs" t="Include" />
         <e p="PlayerCameraFollowScript.cs" t="Include" />
         <e p="SnowBallScript.cs" t="Include" />

@@ -40,12 +40,6 @@ public class MeshGenerationScript : MonoBehaviour
         CreateSnow();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void CreateMesh()
     {
         vertices = new Vector3[(snowWidth + 1) * (snowDepth + 1)];
@@ -55,7 +49,15 @@ public class MeshGenerationScript : MonoBehaviour
         {
             for (int x = 0; x <= snowWidth; x++)
             {
-                vertices[i] = new Vector3(x, Random.Range(minSnowHeight, maxSnowHeight), z);
+                if (z == 0 || z == snowDepth || x == 0 || x == snowWidth)
+                {
+                    vertices[i] = new Vector3(x, minSnowHeight + minSnowHeight / 2, z);
+                }
+                else
+                {
+                    vertices[i] = new Vector3(x, Random.Range(minSnowHeight, maxSnowHeight), z);
+                }
+
                 i++;
             }
         }
@@ -110,13 +112,13 @@ public class MeshGenerationScript : MonoBehaviour
         }
         if (contactPoint.point != lastContactPoint)
         {
-            Vector3 contPoint = contactPoint.point;
+            Vector3 contPoint = transform.InverseTransformPoint(contactPoint.point);
             Vector3 roundedCollisionPoint = new Vector3((int) Math.Round(contPoint.x),
                 contPoint.y,
                 (int) Math.Round(contPoint.z));
 
             Vector3 first =
-                vertices.First(vert => vert.x == roundedCollisionPoint.x && vert.z == roundedCollisionPoint.z);
+                vertices.FirstOrDefault(vert => vert.x == roundedCollisionPoint.x && vert.z == roundedCollisionPoint.z);
 
             for (int i = 0; i < vertices.Length; i++)
             {
@@ -133,7 +135,12 @@ public class MeshGenerationScript : MonoBehaviour
                         vertices[targetVertice - 1] = new Vector3(vertices[targetVertice - 1].x, snowSinkHeight, vertices[targetVertice - 1].z);
                         vertices[targetVertice + 1] = new Vector3(vertices[targetVertice + 1].x, snowSinkHeight, vertices[targetVertice + 1].z);
                         vertices[targetVertice + snowWidth] = new Vector3(vertices[targetVertice + snowWidth].x, snowSinkHeight, vertices[targetVertice + snowWidth].z);
-                        vertices[targetVertice - snowWidth] = new Vector3(vertices[targetVertice - snowWidth].x, snowSinkHeight, vertices[targetVertice - snowWidth].z);
+                        if (targetVertice - snowWidth > 0)
+                        {
+                            vertices[targetVertice - snowWidth] = new Vector3(vertices[targetVertice - snowWidth].x,
+                                snowSinkHeight, vertices[targetVertice - snowWidth].z);
+                        }
+
                         snowBallScript.IncreaseBallSize();
                     }
 

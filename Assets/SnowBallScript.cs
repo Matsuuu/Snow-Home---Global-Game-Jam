@@ -45,7 +45,7 @@ public class SnowBallScript : MonoBehaviour
     public void SlowDown()
     {
         movementSpeed = 0.1f;
-        rb.velocity = rb.velocity * 0.50f;
+        rb.velocity = rb.velocity * 0.25f;
     }
 
     void MoveBall()
