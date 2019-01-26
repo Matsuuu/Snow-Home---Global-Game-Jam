@@ -32,11 +32,6 @@ public class PlayerCameraFollowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            StartCoroutine(ChangeCameraOrientation());
-        }
-
         FollowPlayer();
     }
 
@@ -46,9 +41,9 @@ public class PlayerCameraFollowScript : MonoBehaviour
         transform.LookAt(snowBall.transform);
     }
 
-    public void RotateCamera()
+    public void RotateCamera(int iterationCount)
     {
-        StartCoroutine(ChangeCameraOrientation());
+        StartCoroutine(ChangeCameraOrientation(iterationCount));
     }
 
     public void RotateCameraReverse()
@@ -56,13 +51,13 @@ public class PlayerCameraFollowScript : MonoBehaviour
         
     }
 
-    IEnumerator ChangeCameraOrientation()
+    IEnumerator ChangeCameraOrientation(int iterationCount)
     {
         float newX = GetNewX();
         float newZ = GetNewZ();
         currentOrientation = GetNextOrientation();
        
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < iterationCount; i++)
         {
             cameraOffset = cameraOffset + new Vector3(newX, 0, newZ);
             yield return new WaitForSeconds(0.01f);

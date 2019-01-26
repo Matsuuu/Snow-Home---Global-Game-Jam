@@ -21,6 +21,11 @@ public class SnowBallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         MoveBall();
     }
 
@@ -59,9 +64,10 @@ public class SnowBallScript : MonoBehaviour
         
         Vector3 relativeMovement = camera.transform.TransformVector(movement);
         rb.AddForce(relativeMovement * movementSpeed);
-        if (rb.velocity.sqrMagnitude > maxVelocity)
+
+        /*if (rb.velocity.z > maxVelocity)
         {
-            rb.velocity = rb.velocity.normalized * maxVelocity;
-        }
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxVelocity);
+        }*/
     }
 }

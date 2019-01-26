@@ -52,7 +52,7 @@ public class OnlyWayForwardTestScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         fader.FadeIn(soLetsKeepMovingText);
         yield return new WaitForSeconds(3);
-        snowBallScript.movementSpeed = oldMoveSpeed * 1.5f;
+        snowBallScript.movementSpeed = oldMoveSpeed;
         instructionScript.UpdateInstructionText("Hold W to keep going");
         hasBeenTriggered = true;
     }

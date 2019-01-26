@@ -362,7 +362,7 @@ MonoBehaviour:
   camera: {fileID: 534669902}
   ballSizeIncreaseIncrement: 0.005
   maxScale: 7
-  maxVelocity: 10
+  maxVelocity: 6
   movementSpeed: 4
 --- !u!1 &37561511
 GameObject:
@@ -551,7 +551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134092514}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: -0.5}
-  m_LocalPosition: {x: 552, y: 11, z: -141}
+  m_LocalPosition: {x: 552, y: 11, z: -725}
   m_LocalScale: {x: 40.000065, y: 1.0000005, z: 200}
   m_Children: []
   m_Father: {fileID: 921110145}
@@ -578,7 +578,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134092514}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -873,7 +873,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185268879}
   m_LocalRotation: {x: 0.27059805, y: 0.6532815, z: -0.27059805, w: 0.6532815}
-  m_LocalPosition: {x: 0, y: 0, z: 104.5}
+  m_LocalPosition: {x: 0, y: 0, z: 99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 597446391}
@@ -3005,7 +3005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 692592095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -91.3, y: 0, z: -40.3}
+  m_LocalPosition: {x: -553, y: 0, z: -634}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1757135182}
@@ -3040,7 +3040,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724548576}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -120.7, y: 11, z: 127}
+  m_LocalPosition: {x: -471, y: 11, z: 127}
   m_LocalScale: {x: 40.000015, y: 1, z: 200}
   m_Children: []
   m_Father: {fileID: 921110145}
@@ -3067,7 +3067,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724548576}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3384,8 +3384,8 @@ MonoBehaviour:
   snowBall: {fileID: 29711082}
   snowWidth: 10
   snowDepth: 10
-  widthGeneratorCount: 100
-  depthGeneratorCount: 100
+  widthGeneratorCount: 150
+  depthGeneratorCount: 150
 --- !u!1 &741116585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6067,6 +6067,8 @@ MonoBehaviour:
   mightNotMeanMuchText: {fileID: 928305464}
   iBelieveInYOuText: {fileID: 361245171}
   hasBeenTriggered: 0
+  isHoldingOn: 1
+  hasBeenPromptedToHoldOn: 0
   fader: {fileID: 0}
 --- !u!4 &1528430225
 Transform:
@@ -6308,7 +6310,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1597078325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6555,7 +6557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674905678}
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 552, y: 11, z: 716}
+  m_LocalPosition: {x: 552, y: 11, z: 563}
   m_LocalScale: {x: 40.00007, y: 1, z: 200}
   m_Children: []
   m_Father: {fileID: 921110145}
@@ -6582,7 +6584,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674905678}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

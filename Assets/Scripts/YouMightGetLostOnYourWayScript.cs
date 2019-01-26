@@ -57,9 +57,9 @@ public class YouMightGetLostOnYourWayScript : MonoBehaviour
         Destroy(lightpost);
         yield return new WaitForSeconds(1.5f);
         instructionScript.FadeOut();
-        snowBallScript.movementSpeed = oldMoveSpeed * 1.5f;
-        camera.RotateCamera();
-        yield return new WaitForSeconds(5);
+        snowBallScript.movementSpeed = oldMoveSpeed;
+        camera.RotateCamera(220);
+        yield return new WaitForSeconds(8);
         fader.FadeIn(youHavetToKeepMovingOnText);
         yield return new WaitForSeconds(2);
         instructionScript.UpdateInstructionText("Hold W to keep moving on");

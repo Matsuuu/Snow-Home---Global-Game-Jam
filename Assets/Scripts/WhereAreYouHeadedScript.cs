@@ -51,7 +51,7 @@ public class WhereAreYouHeadedScript : MonoBehaviour
         fader.FadeOut(whereDoYouThinkYoureHeadedText);
         yield return new WaitForSeconds(1.5f);
         snowBallScript.movementSpeed = oldMoveSpeed;
-        camera.RotateCamera();
+        camera.RotateCamera(250);
         hasBeenTriggered = true;
         instructionScript.UpdateInstructionText("Hold W to head towards the unknown");
     }

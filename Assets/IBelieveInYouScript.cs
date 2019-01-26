@@ -18,6 +18,8 @@ public class IBelieveInYouScript : MonoBehaviour
     public Text iBelieveInYOuText;
 
     public bool hasBeenTriggered;
+    public bool isHoldingOn = true;
+    public bool hasBeenPromptedToHoldOn;
 
     public FaderScript fader;
     // Start is called before the first frame update
@@ -32,6 +34,10 @@ public class IBelieveInYouScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hasBeenPromptedToHoldOn && !isHoldingOn)
+        {
+            Application.Quit();
+        }
         if (!textFadeInHasBeenLaunched)
         {
             transform.position = snowBallScript.transform.position + offSet;
@@ -41,6 +47,11 @@ public class IBelieveInYouScript : MonoBehaviour
         {
             textFadeInHasBeenLaunched = true;
             StartCoroutine(LaunchText());
+        }
+
+        if (Input.GetKeyUp(KeyCode.W) && hasBeenPromptedToHoldOn)
+        {
+            isHoldingOn = false;
         }
     }
 
@@ -60,7 +71,9 @@ public class IBelieveInYouScript : MonoBehaviour
         
         yield return new WaitForSeconds(4);
         
-        camera.RotateCamera();
+        camera.RotateCamera(200);
         hasBeenTriggered = true;
+        yield return new WaitForSeconds(3);
+        hasBeenPromptedToHoldOn = true;
     }
 }
