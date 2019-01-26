@@ -62,14 +62,16 @@ public class IBelieveInYouScript : MonoBehaviour
         fader.FadeIn(mightNotMeanMuchText);
         yield return new WaitForSeconds(2);
         fader.FadeIn(iBelieveInYOuText);
+        instructionScript.FadeOut();
         yield return new WaitForSeconds(2);
         snowBallScript.movementSpeed = oldMoveSpeed;
-        snowBallScript.maxScale = snowBallScript.maxScale * 2;
+        snowBallScript.maxScale = snowBallScript.maxScale * 5;
         fader.FadeOut(mightNotMeanMuchText);
         yield return new WaitForSeconds(1);
         fader.FadeOut(iBelieveInYOuText);
         
         yield return new WaitForSeconds(4);
+        instructionScript.UpdateInstructionText("Hold W to keep holding on");
         
         camera.RotateCamera(200);
         hasBeenTriggered = true;
